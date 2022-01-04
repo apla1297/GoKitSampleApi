@@ -1,4 +1,4 @@
-module napodate
+module DateTestModule
 
 go 1.17
 

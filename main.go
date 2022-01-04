@@ -10,7 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"napodate"
+	DateTest "DateTestModule/DateTestFolder"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	flag.Parse()
 	ctx := context.Background()
 	// our napodate service
-	srv := napodate.NewService()
+	srv := DateTest.NewService()
 	errChan := make(chan error)
 
 	go func() {
@@ -30,16 +30,16 @@ func main() {
 	}()
 
 	// mapping endpoints
-	endpoints := napodate.Endpoints{
-		GetEndpoint:      napodate.MakeGetEndpoint(srv),
-		StatusEndpoint:   napodate.MakeStatusEndpoint(srv),
-		ValidateEndpoint: napodate.MakeValidateEndpoint(srv),
+	endpoints := DateTest.Endpoints{
+		GetEndpoint:      DateTest.MakeGetEndpoint(srv),
+		StatusEndpoint:   DateTest.MakeStatusEndpoint(srv),
+		ValidateEndpoint: DateTest.MakeValidateEndpoint(srv),
 	}
 
 	// HTTP transport
 	go func() {
-		log.Println("napodate is listening on port:", *httpAddr)
-		handler := napodate.NewHTTPServer(ctx, endpoints)
+		log.Println("DateTest is listening on port:", *httpAddr)
+		handler := DateTest.NewHTTPServer(ctx, endpoints)
 		errChan <- http.ListenAndServe(*httpAddr, handler)
 	}()
 
