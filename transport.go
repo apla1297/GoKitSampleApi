@@ -1,4 +1,4 @@
-package napodate
+package main
 
 import (
 	"context"
