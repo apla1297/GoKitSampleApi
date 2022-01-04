@@ -1,4 +1,4 @@
-module learn
+module napodate
 
 go 1.17
 
